@@ -86,10 +86,10 @@ char *get_next_line(int fd)
 		if ((size = read(fd, buffer, READ_SIZE)) > 0) {
 			buffer[size] = '\0';
 			tmp = concat(tmp, buffer);
-			return (get_next_line(fd));
+			return (*buffer == NULL ? NULL : get_next_line(fd));
 		}
 		if (tmp == NULL || tmp[0] == '\0')
-			return (NULL);
+			return (free(tmp), NULL);
 		rest_line = my_strdup(tmp, my_strlen(tmp), tmp);
 		tmp = NULL;
 		return (rest_line);

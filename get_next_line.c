@@ -86,7 +86,7 @@ char *get_next_line(int fd)
 		if ((size = read(fd, buffer, READ_SIZE)) > 0) {
 			buffer[size] = '\0';
 			tmp = concat(tmp, buffer);
-			return (*buffer == NULL ? NULL : get_next_line(fd));
+			return (*buffer == '\0' ? NULL : get_next_line(fd));
 		}
 		if (tmp == NULL || tmp[0] == '\0')
 			return (free(tmp), NULL);
